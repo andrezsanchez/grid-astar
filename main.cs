@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+// this would be beautiful if I didn't do it at the last minute
+// sorry =/
 namespace Hi {
   class AStar {
     static void Main(string[] args) {
@@ -93,8 +95,9 @@ namespace Hi {
           if (c != -1) {
             //dont re-add closed list items
 
+            // replace better g scores
             if (newG < closed[c].g) {
-              // eh
+              closed[c] = new Item(item, best, end, newG);
             }
           }
           else if (o != -1) {
