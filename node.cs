@@ -19,7 +19,7 @@ namespace Hi {
     public int getH(Node n) {
       int xdist = Math.Abs(n.x - x);
       int ydist = Math.Abs(n.y - y);
-      return xdist + ydist;
+      return (xdist + ydist) * 10;
     }
 
     public void link(Node node) {

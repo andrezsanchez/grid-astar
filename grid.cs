@@ -20,6 +20,12 @@ namespace Hi {
           }
           if (y > 0) {
             tiles[x, y].link(tiles[x, y - 1]);
+            if (x > 0) {
+              tiles[x, y].link(tiles[x - 1, y - 1]);
+            }
+            if (x < size-1) {
+              tiles[x, y].link(tiles[x + 1, y - 1]);
+            }
           }
         }
       }
