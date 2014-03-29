@@ -25,16 +25,23 @@ namespace Hi {
         s = " c ";
       }
     }
-    public static void start(ref string s, Node start, Node tile) {
+    public static void start(ref string s, Node tile, Node start) {
       if (start == tile) {
         Console.BackgroundColor = ConsoleColor.Magenta;
         s = " s ";
       }
     }
-    public static void end(ref string s, Node end, Node tile) {
+    public static void end(ref string s, Node tile, Node end) {
       if (end == tile) {
         Console.BackgroundColor = ConsoleColor.Magenta;
         s = " e ";
+      }
+    }
+
+    public static void path(ref string s, Node tile, List<Item> path) {
+      if (path.FindIndex(item => item.node == tile) != -1) {
+        Console.BackgroundColor = ConsoleColor.Green;
+        s = " p ";
       }
     }
 

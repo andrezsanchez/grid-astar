@@ -59,7 +59,7 @@ namespace Hi {
 
       while (true) {
         if (open.Count == 0) {
-          Console.WriteLine("No solution");
+          Console.WriteLine("No path could be found");
           return;
         }
 
@@ -70,6 +70,7 @@ namespace Hi {
 
         if (best.node == end) {
           Console.WriteLine("Solution found!");
+          getSolution(closed, best);
           return;
         }
 
@@ -109,6 +110,11 @@ namespace Hi {
 
         System.Threading.Thread.Sleep(300);
       }
+    }
+    public static List<Item> getSolution(List<Item> closed, Item end) {
+      List<Item> path = new List<Item>();
+      path.Add(end);
+      return path;
     }
     public static void render(Grid grid, List<Item> open, List<Item> closed, Node start, Node end) {
 
