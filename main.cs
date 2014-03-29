@@ -13,11 +13,6 @@ namespace Hi {
       List<Item> closed = new List<Item>();
       open.Add(new Item(start, end, 0));
 
-      foreach(Node item in open[0].node.getNeighbors()) {
-        Console.WriteLine("{0}, {1}", item.x, item.y);
-      }
-      
-      Console.WriteLine(open[0].f);
 
       while (true) {
         if (open.Count == 0) {
