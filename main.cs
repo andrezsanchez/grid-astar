@@ -70,7 +70,7 @@ namespace Hi {
 
         if (best.node == end) {
           Console.WriteLine("Solution found!");
-          getSolution(closed, best);
+          renderSolution(g, getSolution(closed, best));
           return;
         }
 
@@ -101,7 +101,7 @@ namespace Hi {
             //dont re-add open list items
           }
           else {
-            open.Add(new Item(item, null, end, newG));
+            open.Add(new Item(item, best, end, newG));
           }
         }
 
@@ -113,8 +113,28 @@ namespace Hi {
     }
     public static List<Item> getSolution(List<Item> closed, Item end) {
       List<Item> path = new List<Item>();
-      path.Add(end);
+      Item current = end;
+      do {
+        path.Add(current);
+        current = current.parent;
+      } while (current != null);
       return path;
+    }
+    public static void renderSolution(Grid grid, List<Item> solution) {
+
+      grid.iterate( (x, y, tile) => {
+        Console.ResetColor();
+
+        String s = "";
+
+        Render.passable(ref s, tile);
+        Render.solution(ref s, tile, solution);
+
+        Console.Write(s);
+        Console.ResetColor();
+
+        Render.newLine(grid, tile);
+      });
     }
     public static void render(Grid grid, List<Item> open, List<Item> closed, Node start, Node end) {
 
@@ -134,18 +154,6 @@ namespace Hi {
 
         Render.newLine(grid, tile);
       });
-
-      /*
-      Console.WriteLine("closed: {0}", closed.Count);
-      foreach (Item i in closed) {
-        Console.WriteLine("x: {0}, y: {1}, f: {2}, g: {3}", i.node.x, i.node.y, i.f, i.g);
-      }
-
-      Console.WriteLine("open: {0}", open.Count);
-      foreach (Item i in open) {
-        Console.WriteLine("x: {0}, y: {1}, f: {2}, g: {3}", i.node.x, i.node.y, i.f, i.getH(end));
-      }
-      */
     }
     public void drawStart() {
     }

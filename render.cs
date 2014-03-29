@@ -38,9 +38,10 @@ namespace Hi {
       }
     }
 
-    public static void path(ref string s, Node tile, List<Item> path) {
+    public static void solution(ref string s, Node tile, List<Item> path) {
       if (path.FindIndex(item => item.node == tile) != -1) {
         Console.BackgroundColor = ConsoleColor.Green;
+        Console.ForegroundColor = ConsoleColor.Black;
         s = " p ";
       }
     }
