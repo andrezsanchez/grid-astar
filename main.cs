@@ -112,40 +112,22 @@ namespace Hi {
     }
     public static void render(Grid grid, List<Item> open, List<Item> closed, Node start, Node end) {
 
-      for (int y = 0; y < grid.size; y++) {
-        for (int x = 0; x < grid.size; x++) {
-          Console.ResetColor();
+      grid.iterate( (x, y, tile) => {
+        Console.ResetColor();
 
-          String s = "";
-          if (grid.tiles[x,y].passable) {
-            s = " . ";
-          }
-          else {
-            Console.BackgroundColor = ConsoleColor.Red;
-            s = " x ";
-          }
+        String s = "";
 
-          if (open.FindIndex(item => item.node == grid.tiles[x,y]) != -1) {
-            Console.BackgroundColor = ConsoleColor.DarkGray;
-            s = " o ";
-          }
-          if (closed.FindIndex(item => item.node == grid.tiles[x,y]) != -1) {
-            Console.BackgroundColor = ConsoleColor.DarkYellow;
-            s = " c ";
-          }
-          if (start == grid.tiles[x,y]) {
-            Console.BackgroundColor = ConsoleColor.Magenta;
-            s = " s ";
-          }
-          if (end == grid.tiles[x,y]) {
-            Console.BackgroundColor = ConsoleColor.Magenta;
-            s = " d ";
-          }
-          Console.Write(s);
-          Console.ResetColor();
-        }
-        Console.Write("\n");
-      }
+        Render.passable(ref s, tile);
+        Render.open(ref s, tile, open);
+        Render.closed(ref s, tile, closed);
+        Render.start(ref s, tile, start);
+        Render.end(ref s, tile, end);
+
+        Console.Write(s);
+        Console.ResetColor();
+
+        Render.newLine(grid, tile);
+      });
 
       /*
       Console.WriteLine("closed: {0}", closed.Count);
