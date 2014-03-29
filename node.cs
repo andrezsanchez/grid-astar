@@ -16,6 +16,7 @@ namespace Hi {
       links = new List<Node>();
     }
 
+    // Manhattan method
     public int getH(Node n) {
       int xdist = Math.Abs(n.x - x);
       int ydist = Math.Abs(n.y - y);

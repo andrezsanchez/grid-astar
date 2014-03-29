@@ -30,6 +30,13 @@ namespace Hi {
         }
       }
     }
+    public void iterate(Action<int, int, Node> f) {
+      for (int y = 0; y < size; y++) {
+        for (int x = 0; x < size; x++) {
+          f(x, y, tiles[x,y]);
+        }
+      }
+    }
   }
 }
 
