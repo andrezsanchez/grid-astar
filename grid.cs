@@ -12,7 +12,7 @@ namespace Hi {
 
       for (int y = 0; y < size; y++) {
         for (int x = 0; x < size; x++) {
-          bool passable = rnd.Next(0,10) != 0;
+          bool passable = rnd.Next(0,10) > 3;
           tiles[x, y] = new Node(x, y, passable);
 
           if (x > 0) {
